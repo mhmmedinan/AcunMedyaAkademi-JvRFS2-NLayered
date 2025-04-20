@@ -1,11 +1,16 @@
 package com.acunmedya_jvrfs2.RentACar.service.abstracts;
 
-import com.acunmedya_jvrfs2.RentACar.entity.Brand;
+import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.CreateBrandRequest;
+import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.UpdateBrandRequest;
+import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.*;
 
 import java.util.List;
 
 public interface BrandService {
 
-    void add(Brand brand);
-    List<Brand> getAll();
+    CreatedBrandResponse add(CreateBrandRequest request);
+    List<GetListBrandResponse> getAll();
+    UpdatedBrandResponse update(UpdateBrandRequest updateBrandRequest);
+    void delete(int id);
+    GetBrandResponse getByName(String name);
 }
