@@ -4,31 +4,36 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity  // Db tablosu olduğunu temsil eder
-@Table(name = "brands") //Tablo ismini temsil eder
-public class Brand {
+@Entity
+@Table(name = "models")
+public class Model {
 
     @Id //primary key alanı
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Otomatik artan ID
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brand")
-    private List<Model> models;
+    @ManyToOne
+    @JoinColumn(name="brandId")
+    private Brand brand; //ManyToOne
+
+    @OneToMany(mappedBy = "model")
+    private List<Car> cars;
 
 
-    public Brand(){
+
+    public Model(){
 
     }
 
-    public Brand(int id, String name,List<Model> models) {
+    public Model(int id, String name, Brand brand,List<Car> cars) {
         this.id = id;
         this.name = name;
-        this.models = models;
+        this.brand = brand;
+        this.cars = cars;
     }
 
     public int getId() {
@@ -47,11 +52,19 @@ public class Brand {
         this.name = name;
     }
 
-    public List<Model> getModels() {
-        return models;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setModels(List<Model> models) {
-        this.models = models;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }
