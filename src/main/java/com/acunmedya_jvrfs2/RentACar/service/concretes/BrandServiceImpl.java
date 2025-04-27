@@ -6,6 +6,7 @@ import com.acunmedya_jvrfs2.RentACar.service.abstracts.BrandService;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.CreateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.UpdateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.*;
+import com.acunmedya_jvrfs2.RentACar.service.mappers.BrandMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,21 +23,30 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public CreatedBrandResponse add(CreateBrandRequest request) {
-       Brand brand = new Brand();
+      /* Brand brand = new Brand();
        brand.setName(request.getName());
        Brand createdBrand = brandRepository.save(brand);
 
        CreatedBrandResponse response = new CreatedBrandResponse();
        response.setId(createdBrand.getId());
        response.setName(createdBrand.getName());
-       return response;
+       return response;*/
+
+        Brand brand = BrandMapper.INSTANCE.brandFromCreateBrandRequest(request);
+        Brand createdBrand = brandRepository.save(brand);
+        CreatedBrandResponse response= BrandMapper.INSTANCE.createdBrandResponseFromBrand(createdBrand);
+        return response;
 
     }
 
     @Override
     public List<GetListBrandResponse> getAll() {
-        return brandRepository.findAll().stream()
-                .map(this::mapToResponse).collect(Collectors.toList());
+
+        List<Brand> brands = brandRepository.findAll();
+
+        List<GetListBrandResponse> responses= brands.stream()
+                .map(BrandMapper.INSTANCE::getListBrandResponseFromBrand).collect(Collectors.toList());
+        return responses;
     }
 
     @Override
@@ -63,12 +73,12 @@ public class BrandServiceImpl implements BrandService {
     }
 
 
-    private GetListBrandResponse mapToResponse(Brand brand){
+   /* private GetListBrandResponse mapToResponse(Brand brand){
         GetListBrandResponse response = new GetListBrandResponse();
         response.setId(brand.getId());
         response.setName(brand.getName());
         return response;
-    }
+    }*/
 
     private GetBrandResponse mapToBrandResponse(Brand brand){
         GetBrandResponse response = new GetBrandResponse();

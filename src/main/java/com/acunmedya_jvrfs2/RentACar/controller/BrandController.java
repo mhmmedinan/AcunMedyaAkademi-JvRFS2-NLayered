@@ -1,7 +1,5 @@
 package com.acunmedya_jvrfs2.RentACar.controller;
 
-import com.acunmedya_jvrfs2.RentACar.entity.Brand;
-import com.acunmedya_jvrfs2.RentACar.repository.BrandRepository;
 import com.acunmedya_jvrfs2.RentACar.service.abstracts.BrandService;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.CreateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.UpdateBrandRequest;
@@ -10,11 +8,9 @@ import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.GetBrandRespon
 import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.GetListBrandResponse;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.UpdatedBrandResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController  //api sınıfı olması için işaretliyoruz
 @RequestMapping("/api/brands")
