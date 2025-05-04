@@ -13,4 +13,5 @@ public interface BrandService {
     UpdatedBrandResponse update(UpdateBrandRequest updateBrandRequest);
     void delete(int id);
     GetBrandResponse getByName(String name);
+    DeletedBrandResponse softDelete(int id);
 }

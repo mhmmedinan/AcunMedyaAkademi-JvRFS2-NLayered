@@ -3,10 +3,7 @@ package com.acunmedya_jvrfs2.RentACar.controller;
 import com.acunmedya_jvrfs2.RentACar.service.abstracts.BrandService;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.CreateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.UpdateBrandRequest;
-import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.CreatedBrandResponse;
-import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.GetBrandResponse;
-import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.GetListBrandResponse;
-import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.UpdatedBrandResponse;
+import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,8 +53,15 @@ public class BrandController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable int id){
+    public void delete(@PathVariable int id){
         brandService.delete(id);
+    }
+
+
+    @DeleteMapping("softdelete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public DeletedBrandResponse softdelete(@PathVariable int id){
+        return brandService.softDelete(id);
     }
 
    /* //GET => id'ye göre getir

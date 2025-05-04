@@ -1,10 +1,13 @@
 package com.acunmedya_jvrfs2.RentACar.entity;
 
+import com.acunmedya_jvrfs2.RentACar.common.entity.BaseEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Table(name = "cars")
-public class Car {
+@SQLRestriction(value = "deleted_at IS NULL")
+public class Car extends BaseEntity {
 
     @Id //primary key alanı
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Otomatik artan ID

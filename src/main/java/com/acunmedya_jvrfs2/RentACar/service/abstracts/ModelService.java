@@ -11,4 +11,5 @@ public interface ModelService {
     CreatedModelResponse add(CreateModelRequest request);
     List<GetListModelResponse> getList();
     List<GetListModelResponse> getByBrandName(String brandName);
+    List<GetListModelResponse> getByBrandId(int brandId);
 }

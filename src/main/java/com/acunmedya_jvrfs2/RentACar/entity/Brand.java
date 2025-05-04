@@ -1,12 +1,15 @@
 package com.acunmedya_jvrfs2.RentACar.entity;
 
+import com.acunmedya_jvrfs2.RentACar.common.entity.BaseEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
 @Entity  // Db tablosu olduğunu temsil eder
 @Table(name = "brands") //Tablo ismini temsil eder
-public class Brand {
+@SQLRestriction(value = "deleted_at IS NULL")
+public class Brand extends BaseEntity {
 
     @Id //primary key alanı
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Otomatik artan ID
@@ -17,7 +20,7 @@ public class Brand {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL)
     private List<Model> models;
 
 
