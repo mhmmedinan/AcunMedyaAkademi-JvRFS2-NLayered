@@ -4,6 +4,7 @@ import com.acunmedya_jvrfs2.RentACar.service.abstracts.BrandService;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.CreateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.requests.brand.UpdateBrandRequest;
 import com.acunmedya_jvrfs2.RentACar.service.dtos.responses.brand.*;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class BrandController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //201
-    public CreatedBrandResponse add(@RequestBody CreateBrandRequest request){
+    public CreatedBrandResponse add(@Valid @RequestBody CreateBrandRequest request){
         return brandService.add(request);
     }
 
